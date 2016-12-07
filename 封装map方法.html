@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var star = ['小沈阳', '尼古拉斯赵四', 3, '宋小宝', '刘能', '小沈阳', '小岳岳', '老郭', '于大爷'];
+// 将数组索引值组成一个新数组
+var result = star.map(function (value, index, arr) {
+	// 返回索引值
+	return index
+})
+
+/**
+ * 实现map方法
+ * @arr 	原数组
+ * @fn 		回调函数
+ * return 	新数组
+ **/ 
+function map (arr, fn) {
+	// 将每一次执行的结果保存，并返回
+	var result = [];	// 返回结果的容器
+	// 遍历数组并执行每一次循环
+	for(var i = 0; i < arr.length; i++) {
+		// 参数：value， index， arr
+		result.push(fn.call(arr, arr[i], i, arr))
+		// result[i] = fn(arr[i], i, arr)
+	}
+	// 循环执行之后，我们将结果返回
+	return result;
+}
+
+// 测试
+var result = map(star, function (value, index, arr) {
+	console.log(this)
+	// 每个成员值前面加上111
+	return '111' + this[index];
+	// return '111' + value;
+})
+console.log(result, star)
+</script>
+</body>
+</html>
